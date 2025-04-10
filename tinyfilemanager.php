@@ -268,6 +268,9 @@ if (isset($_SESSION[FM_SESSION_ID]['logged']) && !empty($directories_users[$_SES
 // clean $root_url
 $root_url = fm_clean_path($root_url);
 
+// FIXME: can we provide this in a programmatic way rather than hardcoded?
+define('FM_SELF_URL', '/');
+
 // abs path for site
 defined('FM_ROOT_URL') || define('FM_ROOT_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . (!empty($root_url) ? '/' . $root_url : ''));
 defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . $_SERVER['PHP_SELF']);
@@ -2154,7 +2157,7 @@ $all_files_size = 0;
                 $filesize_raw = "";
                 $filesize = lng('Folder');
                 $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
-                $owner = array('name' => '?'); 
+                $owner = array('name' => '?');
                 $group = array('name' => '?');
                 if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
                     try {
@@ -2226,7 +2229,7 @@ $all_files_size = 0;
                 $filelink = '?p=' . urlencode(FM_PATH) . '&amp;view=' . urlencode($f);
                 $all_files_size += $filesize_raw;
                 $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
-                $owner = array('name' => '?'); 
+                $owner = array('name' => '?');
                 $group = array('name' => '?');
                 if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
                     try {
